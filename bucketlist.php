@@ -3,8 +3,8 @@
 Plugin Name: Bucket List
 Plugin URI: http://exiledesigns.com/
 Description: Bucket List lets you create, organize and beautifully show off all the goals you have in life.
-Version: 1
-Author: <a href="http://exiledesigns.com">exiledesigns</a>
+Version: 1.0.2
+Author: exiledesigns
 Author URI: http://exiledesigns.com/
 */
 
@@ -109,7 +109,7 @@ function delete_bucket_table(){
 	delete_option( 'exile-bucketlist-credits' );
 }
 function bucketlist_uninstall() {	delete_bucket_table(); }
-register_deactivation_hook( __FILE__, 'bucketlist_uninstall' );
+//register_deactivation_hook( __FILE__, 'bucketlist_uninstall' );
 
  /* == Handling the AJAX request =========================
 	  Perform action through AJAX request
