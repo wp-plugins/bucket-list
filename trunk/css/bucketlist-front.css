@@ -1,0 +1,9 @@
+/* == Bucket List ======================================================
+	  This stylesheet controls the bucket list looks on your website.
+	  Bucket List Plugin created by www.exiledesigns.com
+   --------------------------------------------------------------------- */
+
+.bucket .done span{text-decoration:line-through;}
+.bucket .done span.date{text-decoration:none;color:#a7a7a7;padding-right:5px;}
+
+#exiledesigns-bucketlist .credits{font-size:90%;}
