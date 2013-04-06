@@ -49,7 +49,7 @@ class ExileBucketList extends WP_Widget {
 		$list = $wpdb->get_results( $qList );
 		
 		// Get Style
-		//wp_enqueue_style( 'bucketlist-wcss', plugins_url() . '/bucketlist/css/bucketlist-front.css' );
+		//wp_enqueue_style( 'bucketlist-wcss', plugins_url() . '/bucket-list/css/bucketlist-front.css' );
 		
 		// Display before widget
 		echo $before_widget;
