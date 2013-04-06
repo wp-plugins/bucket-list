@@ -41,7 +41,7 @@ function display_bucketlist( $atts ){
 	$i = 0;
 	$j = 0;
 	
-	wp_enqueue_style( 'bucketlist-css', plugins_url() . '/bucketlist/css/bucketlist-front.css' );
+	wp_enqueue_style( 'bucketlist-css', plugins_url() . '/bucket-list/css/bucketlist-front.css' );
 	
 	#; Loop through bucket to prepare HTML
 	$content = '<div id="exiledesigns-bucketlist">';

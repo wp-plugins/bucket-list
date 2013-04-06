@@ -417,7 +417,7 @@ jQuery(
 									$("#bucket-"+bucketId.split("-")[1]).find('ul.bucketcat-actions > li.task_date_checked').text( 'Achieved on' )
 									$("#bucket-"+bucketId.split("-")[1]).find('ul.bucketcat-actions > li.task_link_to').text( 'Linked to post' )
 									$("#bucket-"+bucketId.split("-")[1]).find('ul.bucketcat-actions > li.link_hide_bucket:first').text( ' ' )
-									$("#bucket-"+bucketId.split("-")[1]).find('ul.bucketcat-actions > li.link_hide_bucket:last').html( '<a href="#" id="hide-bucket_' + bucketId.split("-")[1] + '"><img src="' + dataExile.plugin_url + '/bucketlist/images/less.png" alt="less" /></a>' )
+									$("#bucket-"+bucketId.split("-")[1]).find('ul.bucketcat-actions > li.link_hide_bucket:last').html( '<a href="#" id="hide-bucket_' + bucketId.split("-")[1] + '"><img src="' + dataExile.plugin_url + '/bucket-list/images/less.png" alt="less" /></a>' )
 									applyActions()
 								}
 							}
@@ -487,7 +487,7 @@ jQuery(
 				
 				var textBucketDeleted = $('#bucket-'+$(this).attr('id').split("_")[1]).find('label:first').text()
 				var dHtml 	 = '<p>The category "'+textBucketDeleted+'" has been deleted and all your goals are being moved to Uncategorized.</p>';
-				dHtml += '<p style="text-align:center;"><img src="'+dataExile.plugin_url+'/bucketlist/images/wpspin-2x.gif" alt="Loading..." /></p>';
+				dHtml += '<p style="text-align:center;"><img src="'+dataExile.plugin_url+'/bucket-list/images/wpspin-2x.gif" alt="Loading..." /></p>';
 				$( '<div id="messageDelete" />' ).html( dHtml ).dialog( 
 					{ 
 						resizable: false, 

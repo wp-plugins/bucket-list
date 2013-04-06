@@ -1,4 +1,4 @@
-<?php
+/bucket-list/<?php
 /*
   *
   * Exile plugin - Bucket List
@@ -334,8 +334,8 @@ class BucketListManager {
 			$content .= '<li id="bucket-' . $bucket->id . '">';
 			$content .= '<ul class="bucketlist-cat">';
 			$content .= '<li class="bucket_title"><span class="bucket_title"><label>' . stripslashes( $bucket->title ) . '</label>';
-			if ( $bucket->id != 1 ) $content .= '<a href="#" class="actions_deleteBucket" id="deleteBucketLink_' . $bucket->id . '"><img src="' . plugins_url() . '/bucketlist/images/delete.png" alt="delete" /></a>';
-			$content .= '<a href="#" class="actions_editBucket" id="editBucketLink_' . $bucket->id . '"><img src="' . plugins_url() . '/bucketlist/images/edit.png" alt="edit" /></a></span>';
+			if ( $bucket->id != 1 ) $content .= '<a href="#" class="actions_deleteBucket" id="deleteBucketLink_' . $bucket->id . '"><img src="' . plugins_url() . '/bucket-list/images/delete.png" alt="delete" /></a>';
+			$content .= '<a href="#" class="actions_editBucket" id="editBucketLink_' . $bucket->id . '"><img src="' . plugins_url() . '/bucket-list/images/edit.png" alt="edit" /></a></span>';
 
 			if ( $withTask ) {
 				
@@ -347,7 +347,7 @@ class BucketListManager {
 					$content .= '<li class="task_date_checked">' . __('Achieved on','cleio') . '</li>';
 					$content .= '<li class="task_link_to">' . __('Linked to post','cleio') . '</li>';
 					$content .= '<li class="link_hide_bucket">&nbsp;</li>';
-					$content .= '<li class="link_hide_bucket"><a href="#" id="hide-bucket_' . $bucket->id . '"><img src="' . plugins_url() . '/bucketlist/images/less.png" alt="less" /></a></li>';
+					$content .= '<li class="link_hide_bucket"><a href="#" id="hide-bucket_' . $bucket->id . '"><img src="' . plugins_url() . '/bucket-list/images/less.png" alt="less" /></a></li>';
 					$content .= '</ul>'; //.bucketlist-actions
 					$content .= '</li></ul>'; //.bucket-title + .bucketlist-cat
 				
@@ -379,7 +379,7 @@ class BucketListManager {
 							$content .= '<li class="task_date_checked">' . $dateFormat . '</li>';
 							//$content .= '<li class="task_link_to"><a href="#">Long icelandic winter, a very long post [...]</a>' . $task->link_to . '</li>';
 							$content .= '<li class="task_link_to">' . $linkFormat . '</li>';
-							$content .= '<li class="task_delete"><a href="#" class="actions_deleteTask" id="deleteTaskLink_' . $task->id . '"><img src="' . plugins_url() . '/bucketlist/images/delete.png" alt="delete" /></a></li><li class="task_edit"><a href="#" class="actions_editTask" id="editTaskLink_' . $task->id . '"><img src="' . plugins_url() . '/bucketlist/images/edit.png" alt="edit" /></a></li>';
+							$content .= '<li class="task_delete"><a href="#" class="actions_deleteTask" id="deleteTaskLink_' . $task->id . '"><img src="' . plugins_url() . '/bucket-list/images/delete.png" alt="delete" /></a></li><li class="task_edit"><a href="#" class="actions_editTask" id="editTaskLink_' . $task->id . '"><img src="' . plugins_url() . '/bucket-list/images/edit.png" alt="edit" /></a></li>';
 						$content .= '</ul></li>';
 					}
 					$content .= '</ul>';
