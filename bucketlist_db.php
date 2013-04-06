@@ -1,4 +1,4 @@
-/bucket-list/<?php
+<?php
 /*
   *
   * Exile plugin - Bucket List
