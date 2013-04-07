@@ -50,6 +50,11 @@ We also included an optional widget that displays your latest achieved tasks. Yo
 4. To display the Bucket List in any of your Pages/Posts, simply paste this shortcode: **[bucketlist]**
 5. By default, the achievement date will show, but you can hide it: [bucketlist displaydate=0]
 
+== FAQ ==
+
+= The plugin doesn't seem to work properly. When I click on certain things, nothing happens. =
+Try deactivating your other plugins (and/or your theme). Often, another plugin may cause a Javascript conflict.
+
 == Changelog ==
 
 = 1.0.3 =* Fixed ability to display the credit link or not.
