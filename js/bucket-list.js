@@ -749,7 +749,7 @@ jQuery(
 			}
 		)
 		
-		$( "input:checkbox" ).unbind('click').click(
+		$( "input[type=checkbox][name*='cb-task']" ).unbind('click').click(
 			function(){
 				
 				

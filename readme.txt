@@ -4,7 +4,7 @@ Donate link: http://www.exiledesigns.com/
 Tags: bucket-list, bucket, list, to-do, achievements
 Requires at least: 3.0.1
 Tested up to: 3.4
-Stable tag: 1.0.1
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,7 +50,12 @@ We also included an optional widget that displays your latest achieved tasks. Yo
 4. To display the Bucket List in any of your Pages/Posts, simply paste this shortcode: **[bucketlist]**
 5. By default, the achievement date will show, but you can hide it: [bucketlist displaydate=0]
 
-== Changelog === 1.0.1 =* Fixed plugin path.= 1 =* First version commited to WordPress.
+== Changelog ==
+
+= 1.0.3 =* Fixed ability to display the credit link or not.
+* The database isn't deleted anymore when deactivating the plugin.
+
+= 1.0.2 =* Fixed bug that prevented certain users to create categories.= 1.0.1 =* Fixed plugin path.= 1 =* First version commited to WordPress.
 
 
 == Credits ==
