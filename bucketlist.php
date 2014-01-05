@@ -3,7 +3,7 @@
 Plugin Name: Bucket List
 Plugin URI: http://cleio.co
 Description: Bucket List lets you create, organize and beautifully show off all the goals you have in life.
-Version: 1.1.0
+Version: 1.0.3
 Author: cleio&co
 Author URI: http://cleio.co
 */
