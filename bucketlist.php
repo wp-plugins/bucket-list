@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Bucket List
-Plugin URI: http://exiledesigns.com/
+Plugin URI: http://cleio.co
 Description: Bucket List lets you create, organize and beautifully show off all the goals you have in life.
-Version: 1.0.3
-Author: exiledesigns
-Author URI: http://exiledesigns.com/
+Version: 1.1.0
+Author: cleio&co
+Author URI: http://cleio.co
 */
 
 /* == Handling the AJAX request =========================
@@ -19,16 +19,19 @@ require_once( dirname( __FILE__ ) . '/bucketlist_widgets.php' );
 -------------------------------------------------------- */
 function bucketlist_admin() 	{ 
 	add_menu_page(  __( "Bucket List" ), __( "Bucket List" ), 'administrator', 'bucketlist', '_callback_admin_page', plugins_url() . '/bucket-list/images/favicon.png', 58);
-}		
+}
 function _callback_admin_page() 	{ 
+	
 	wp_enqueue_script( 'wp-ajax-response' );
 	wp_enqueue_script( 'bucketlist-js', plugins_url() . '/bucket-list/js/bucket-list.js', array ("jquery", "jquery-ui-core", "jquery-ui-sortable", "jquery-ui-dialog") );
+	wp_enqueue_script( 'retina-bucketlist-js', plugins_url() . '/bucket-list/js/retina-1.1.0.min.js' );
 	$data_array = Array();
 	$data_array['plugin_url'] = plugins_url();
 	if ( get_option( 'exile-bucketlist-catstate' ) ) $data_array['cathide'] = implode(get_option( 'exile-bucketlist-catstate' ), ';'); 
 	else $data_array['cathide'] = '';
 	wp_localize_script( 'bucketlist-js', 'dataExile', $data_array );
 	wp_enqueue_style( 'bucketlist-css', plugins_url() . '/bucket-list/css/bucketlist-back.css' );
+	
 	wp_enqueue_script('jquery-ui-datepicker');
 	include('bucketlist_admin_page.php'); 
 }

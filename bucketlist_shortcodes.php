@@ -20,7 +20,8 @@ function display_bucketlist( $atts ){
 	extract( 
 		shortcode_atts( 
 			array(
-				'displaydate' => true
+				'displaydate' 	=> true,
+				'cat'			=> 0
 			), 
 			$atts 
 		) 
@@ -34,6 +35,7 @@ function display_bucketlist( $atts ){
 	
 	#; Prepare the query
 	$qListBucket = "SELECT * FROM " . $bucketTableName;
+	if( $cat != 0 )	$qListBucket .= " WHERE id IN (" . $cat . ")";
 	
 	#; Get results
 	$qListBucket .= ' ORDER BY ' . $bucketTableName . '.order'; 
@@ -52,6 +54,7 @@ function display_bucketlist( $atts ){
 			
 		if ( $listTask ){
 			$j++;
+			
 			$content .= '<div class="bucket" id="bucket-' . $j . '">';
 				$content .= '<h3>' . stripslashes( $bucket->title ) . '</h3>';
 				$content .= '<ul>';							
@@ -84,7 +87,7 @@ function display_bucketlist( $atts ){
 		
 	}
 	
-	if ( get_option("exile-bucketlist-credits") == "1" ) $content .= '<div class="credits">Bucket List plugin by <a href="http://www.exiledesigns.com" target="_blank">exiledesigns</a></div>';
+	if ( get_option("exile-bucketlist-credits") == "1" ) $content .= '<div class="credits">Bucket List plugin by <a href="http://cleio.co" target="_blank">Cleio&Co</a></div>';
 	
 	$content .= "</div>";
 	

@@ -235,7 +235,7 @@ class BucketListManager {
 		$taskTableName = $wpdb->prefix . "bucketlist_task";
 		
 		#; Prepare the query
-		$qListBucket = "SELECT * FROM %s";
+		$qListBucket = "SELECT * FROM " . $bucketTableName;
 	 	$where = "";
 		
 		#; Set the filter for the the query (if needed)
@@ -250,7 +250,7 @@ class BucketListManager {
 		
 		#; Get results
 		$qListBucket .= $where.' ORDER BY ' . $bucketTableName . '.order'; 
-		$listBucket = $wpdb->get_results( $wpdb->prepare( $qListBucket, $bucketTableName ) );
+		$listBucket = $wpdb->get_results( $qListBucket );
 	 	
 		if ( $withTask ) {
 			#; Loop through bucket to get the task linked
@@ -333,7 +333,7 @@ class BucketListManager {
 			
 			$content .= '<li id="bucket-' . $bucket->id . '">';
 			$content .= '<ul class="bucketlist-cat">';
-			$content .= '<li class="bucket_title"><span class="bucket_title"><label>' . stripslashes( $bucket->title ) . '</label>';
+			$content .= '<li class="bucket_title"><span class="bucket_title"><label>' . stripslashes( $bucket->title ) . '</label><span class="bucket_id">(ID: ' . $bucket->id . ')</span>';
 			if ( $bucket->id != 1 ) $content .= '<a href="#" class="actions_deleteBucket" id="deleteBucketLink_' . $bucket->id . '"><img src="' . plugins_url() . '/bucket-list/images/delete.png" alt="delete" /></a>';
 			$content .= '<a href="#" class="actions_editBucket" id="editBucketLink_' . $bucket->id . '"><img src="' . plugins_url() . '/bucket-list/images/edit.png" alt="edit" /></a></span>';
 

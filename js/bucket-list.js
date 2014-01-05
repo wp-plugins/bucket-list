@@ -18,7 +18,6 @@ jQuery(
 		getSelectListBucket();
 		getListBucket(1);
 		
-		
 		// Info message close
 		$( "#bucketlistCloseInfo" ).click( 
 			function() {
@@ -300,6 +299,7 @@ jQuery(
 								
 								// Fill the html
 								$("#listCat").empty( )
+								$("#waitListContainer").empty().hide()
 								$("#listCat").html( this.data )
 								
 								if ( firstopen ) {
@@ -315,7 +315,7 @@ jQuery(
 												.parent() // <li> for the category content
 												.parent() // <ul> category
 												.next().hide()
-											$("#hide-bucket_"+tabcat[cat]).children(0).attr( "src", $("#hide-bucket_"+tabcat[cat]).children(0).attr( "src").replace( "less.png", "more.png" ) )
+											$("#hide-bucket_"+tabcat[cat]).children(0).attr( "src", $("#hide-bucket_"+tabcat[cat]).children(0).attr( "src").replace( "less.png", "more.png" ).replace("less@2x.png", "more@2x.png") )
 										}
 									}
 								}
@@ -448,11 +448,13 @@ jQuery(
 							.next().slideToggle('slow')
 							
 						var src = $(this).children(0).attr( "src" )
-						if(  src.indexOf( "less.png" ) !== -1 ){
+						if(  (src.indexOf( "less.png" ) !== -1) || (src.indexOf( "less@2x.png" ) !== -1) ){
 							$(this).children(0).attr( "src", src.replace( "less.png", "more.png" ) )
+							$(this).children(0).attr( "src", src.replace( "less@2x.png", "more@2x.png" ) )
 						}
 						else {														
 							$(this).children(0).attr( "src", src.replace( "more.png", "less.png" ) )
+							$(this).children(0).attr( "src", src.replace( "more@2x.png", "less@2x.png" ) )
 						}
 						
 						jQuery.post(
@@ -523,9 +525,12 @@ jQuery(
 				
 				// Handle icon
 				var src = $(this).children(0).attr( "src" )										
-				if(  src.indexOf( "edit.png" ) !== -1 ){
+				if(  (src.indexOf( "edit.png" ) !== -1) || (src.indexOf( "edit@2x.png" ) !== -1) ){
 				
 					$(this).children(0).attr( "src", src.replace( "edit.png", "save.png" ) )
+					$(this).children(0).attr( "src", src.replace( "edit@2x.png", "save@2x.png" ) )
+					$(this).prev().prev().hide()
+					$(this).prev().hide()
 					var currentVal = $.trim( $(this).parent().children(0).html() );
 					// Change Label to form
 					var input = $('<input />', {'type': 'text', 'id': 'text-edit-'+bucketId, 'value': currentVal })
@@ -536,6 +541,9 @@ jQuery(
 				}
 				else {														
 					$(this).children(0).attr( "src", src.replace( "save.png", "edit.png" ) )
+					$(this).children(0).attr( "src", src.replace( "save@2x.png","edit@2x.png" ) )
+					$(this).prev().prev().show()
+					$(this).prev().show()
 					
 					jQuery.post(
 						ajaxurl,
@@ -626,7 +634,7 @@ jQuery(
 																
 																var src = $("#editTaskLink_"+taskId).children(0).attr( "src" )
 					
-																if(  src.indexOf( "edit.png" ) !== -1 ){
+																if( (src.indexOf( "edit.png" ) !== -1) || (src.indexOf( "edit@2x.png" ) !== -1)){
 																	jQuery.post(
 																		ajaxurl,
 																		{	action: 'updateTask', 'id': taskId, 'link_to': $('input[name=taskLink_to]:checked').val() },
@@ -674,9 +682,11 @@ jQuery(
 				
 				// Handle icon
 				var src = $(this).children(0).attr( "src" )										
-				if(  src.indexOf( "edit.png" ) !== -1 ){
+				if(  (src.indexOf( "edit.png" ) !== -1) || (src.indexOf( "edit@2x.png" ) !== -1) ){
 					
 					$(this).children(1).attr( "src", src.replace( "edit.png", "save.png" ) )
+					$(this).children(1).attr( "src", src.replace( "edit@2x.png", "save@2x.png" ) )
+					$(this).parent().prev().css('visibility', 'hidden')
 					
 					// Handle fields
 					// Task Title
@@ -700,6 +710,8 @@ jQuery(
 				else {
 					
 					$(this).children(0).attr( "src", src.replace( "save.png", "edit.png" ) )
+					$(this).children(1).attr( "src", src.replace( "save@2x.png", "edit@2x.png" ) )
+					$(this).parent().prev().css('visibility', 'visible')
 					
 					// Handle fields
 					// Task Title
@@ -756,7 +768,7 @@ jQuery(
 				var taskId = $(this).attr('name').split("_")[1]
 				var src = $("#editTaskLink_"+taskId).children(0).attr( "src" )
 				
-				if(  src.indexOf( "edit.png" ) !== -1 ){
+				if(  (src.indexOf( "edit.png" ) !== -1) || (src.indexOf( "edit@2x.png" ) !== -1) ){
 					if ( this.checked ) var value = 'now'
 					else var value = 'NULL'
 					if ( value == 'now' ) {
@@ -793,6 +805,11 @@ jQuery(
 			}
 		)
 		
+		if (RetinaImage !== undefined) {
+			$("#listContainer").find('img').each(function() {
+				new RetinaImage(this);
+			});
+		}
 		}
 	}
 );

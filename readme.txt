@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: exiledesigns
 Donate link: http://www.exiledesigns.com/
-Tags: bucket-list, bucket, list, to-do, achievements
+Tags: bucket-list, bucket, goals, to-do, achievements
 Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 1.0.3
+Tested up to: 3.8
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,22 +47,18 @@ We also included an optional widget that displays your latest achieved tasks. Yo
 1. Browse to the Plugins Menu in Wordpress. Then either search for "Bucket List" through the Search Tab, OR upload the "bucketlist.zip" file through the Uploads tab.
 2. Activate the plugin by going back to the Plugins Menu.
 3. Setup and configure Bucket List by clicking the new "Bucket List" Wordpress Menu.
-4. To display the Bucket List in any of your Pages/Posts, simply paste this shortcode: **[bucketlist]**
+4. To display the Bucket List in any of your Pages/Posts, simply paste this shortcode: **[bucketlist]**. If you would like to display only one or several categorie, paste **[bucketlist cat="4"]** or **[bucketlist cat="1,3,4"]**.
 5. By default, the achievement date will show, but you can hide it: [bucketlist displaydate=0]
 
-== FAQ ==
-
-= The plugin doesn't seem to work properly. When I click on certain things, nothing happens. =
-Try deactivating your other plugins (and/or your theme). Often, another plugin may cause a Javascript conflict.
-
 == Changelog ==
+
+= 1.1.0 =
+* Updated User Interface that fits WordPress 3.8 new colors, and retina support
+* New branding! Bucket List Plugin is now linked to our new website: Cleio&Co (changes in the back-end: social media icons, link-back in the footer and header design).
+* Adding filter for bucketlist shortcode, you can now specify which category you want to display by giving the id, or list of id separated with comma into the "cat" filter. Example: [bucketlist cat="2,3"]
+* Adding option for bucketlist widget, you can now select which category you want to display.
 
 = 1.0.3 =* Fixed ability to display the credit link or not.
 * The database isn't deleted anymore when deactivating the plugin.
 
 = 1.0.2 =* Fixed bug that prevented certain users to create categories.= 1.0.1 =* Fixed plugin path.= 1 =* First version commited to WordPress.
-
-
-== Credits ==
-
-Special thanks to [Brankic1979](http://www.brankic1979.com/) for his cute icons.

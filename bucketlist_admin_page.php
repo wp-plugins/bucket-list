@@ -12,13 +12,13 @@
 	
 	<div class="header">
 	<!-- Page title -->
-	<a href="http://www.exiledesigns.com/" target="_blank"><img src="<?php echo plugins_url(); ?>/bucket-list/images/bucketlist.gif" alt="Bucket List, by exiledesigns" /></a>
+	<a href="http://cleio.co/" target="_blank"><img src="<?php echo plugins_url(); ?>/bucket-list/images/bucketlist.png" alt="Bucket List, by Cleio&amp;Co" /></a>
 	<div>
-	<img src="<?php echo plugins_url(); ?>/bucket-list/images/wetravel.gif" alt="Bucket List, by exiledesigns" />
-		<div class="fb-like" data-href="https://www.facebook.com/pages/exiledesigns/145830992134169?ref=ts&amp;fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-		<div class="tweet"><a href="https://twitter.com/corinne" class="twitter-follow-button" data-url="http://www.exiledesigns.com" data-show-count="true" data-text="exiledesigns" data-via="corinne">Follow</a></div>
-		<div class="gplus"><div class="g-plusone" data-annotation="none" data-size="medium" data-width="300" data-href="http://www.exiledesigns.com"></div></div>
-		<div class="newsletter"><a href="http://exiledesigns.us5.list-manage.com/subscribe?u=9a7ea77c246aac067f8557c00&id=3c1bf7a57e">Newsletter</a></div>
+	<img src="<?php echo plugins_url(); ?>/bucket-list/images/wetravel.png" alt="We love travel blogging!" />
+		<div class="fb-like" data-href="https://www.facebook.com/cleioco" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+		<div class="tweet"><a href="https://twitter.com/cleioco" class="twitter-follow-button" data-url="http://www.cleio.co" data-show-count="true" data-text="Cleio&amp;Co" data-via="corinne">Follow</a></div>
+		<div class="gplus"><div class="g-plusone" data-annotation="none" data-size="medium" data-width="300" data-href="http://cleio.co"></div></div>
+		<div class="newsletter"><a href="http://eepurl.com/KK2Yj">Newsletter</a></div>
 	</div>
 	<br style="clear:both;" />
 	
@@ -48,6 +48,11 @@
 		<input type="button" class="button" id="btAddTask" value="<?php echo __( "Create" ); ?>" />
 	</div>
 	
+	<!-- Wait container-->
+	<div id="waitListContainer">
+		<img src="<?php echo get_bloginfo('url'); ?>/wp-includes/images/wpspin-2x.gif" />		
+	</div>
+	
 	<!-- Init category / goal list (sortable) -->
 	<div id="listContainer">
 
@@ -64,7 +69,7 @@
 			else $checked="";
 		
 		?>
-		<input type="checkbox" name="cb-credit-exile" id="cb-credit-exile" value="1" <?php echo $checked; ?> /> Feeling grateful? Support the Bucket List plugin with a link back to <a href="http://www.exiledesigns.com" target="_blank">exiledesigns</a>.
+		<input type="checkbox" name="cb-credit-exile" id="cb-credit-exile" value="1" <?php echo $checked; ?> /> Feeling grateful? Support the Bucket List plugin with a link back to <a href="http://cleio.co" target="_blank">Cleio&amp;Co</a>.
 	</div>
 	
 </div>

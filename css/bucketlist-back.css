@@ -2,6 +2,8 @@
 	  This stylesheet controls the plugin display in Wordpress Admin.
 	  Bucket List Plugin created by www.exiledesigns.com
    --------------------------------------------------------------------- */
+   
+/* == general ========================================================== */
 
 .wrapBucket{margin-right:15px;}
 .wrapBucket h2,span.bucket_title{font-family:'Helvetica Neue Light', 'Helvetica Neue', sans-serif;font-weight:normal;}
@@ -9,7 +11,7 @@
 .wrapBucket #icon-edit{margin-right:5px;}
 .wrapBucket #formCat,.wrapBucket #formGoal{margin-top:5px;}
 .task_date_checked,.task_link_to,.task_delete,.task_edit,.link_hide_bucket{float:left;}
-ul.bucketlist-cat,ul.bucketlist-items{background:#f3f3f3;overflow:hidden;}
+ul.bucketlist-cat,ul.bucketlist-items{background:#ffffff;overflow:hidden;}
 .wrapBucket input#goalTitle{width:500px;}
 .wrapBucket input#catTitle{width:300px;}
 
@@ -20,7 +22,7 @@ ul.bucketlist-cat,ul.bucketlist-items{background:#f3f3f3;overflow:hidden;}
 .ui-dialog-content{padding:10px;}
 .ui-dialog-content input{margin-left:3px;}
 .ui-dialog-buttonpane{padding:0 10px 10px 10px;}
-.ui-dialog-titlebar{background:#ececec;padding:3px 10px;}
+.ui-dialog-titlebar{background:#ffffff;padding:3px 10px;}
 .ui-icon-closethick{float:right;}
 /* Overlays */
 .ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
@@ -45,9 +47,9 @@ ul.bucketlist-cat,ul.bucketlist-items{background:#f3f3f3;overflow:hidden;}
 .wrapBucket .header div div{padding-top:0;}
 .wrapBucket .header .fb-like,.wrapBucket .header .gplus{margin-right:20px;}
 .wrapBucket .header{margin:20px 0 10px 0;}
-.header .newsletter{background:#eeeeee;border:1px solid #cccccc;height:19px;width:70px;
+.header .newsletter{background:#ffffff;border:1px solid #cccccc;text-align:center;
 border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;}
-.header .newsletter a{padding:2px 6px 3px 6px;}
+.wrapBucket .header .newsletter a{display:block;padding:1px 6px 3px 6px;margin-right:0;}
 .header div img{margin-bottom:3px;}
 
 .wrapBucket .footer{margin-top:20px;background:#ecebf6;padding:10px;
@@ -55,20 +57,22 @@ border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;}
 
 
 /* == category title =================================================== */
-
-ul.bucketlist-cat{margin-top:20px;background:#f3f3f3 url(../images/drag.png) no-repeat 10px 10px;
+ul.bucketlist-cat{
+margin-top:20px;
+background:#ffffff url(../images/drag.png) no-repeat 10px 9px;
 -moz-border-radius-topleft:10px;-webkit-border-top-left-radius:10px;border-top-left-radius:10px;
 -moz-border-radius-topright:10px;-webkit-border-top-right-radius:10px;border-top-right-radius:10px;
 }
-li.bucket_title{padding:0 10px 4px 33px;overflow:hidden;}
+li.bucket_title{padding:0 10px 2px 33px;overflow:hidden;}
 span.bucket_title{
-margin:9px 1% 4px 0;
+margin:5px 1% 4px 0;
 width:59%;
 display:block;float:left;
 font-size:13px;font-size:1.3rem;
 }
-span.bucket_title label{float:left;}
+span.bucket_title label{float:left;padding-top:2px;padding-right:5px;}
 span.bucket_title a{margin-left:5px;vertical-align:middle;}
+.bucket_id{font-size:0.65em;padding-right:8px;}
 
 /*action list for category titles*/
 ul.bucketcat-actions,ul.bucketitem-actions{width:40%;float:left;overflow:hidden;}
@@ -91,7 +95,7 @@ ul.bucketlist-items{clear:both;
 /* == an item =========================================================== */
 
 li.bucketlist-item{border-top:1px solid #e0e0e0;overflow:auto;padding:15px 10px 0 33px;margin:0;
-background:#f3f3f3 url(../images/drag-s.png) no-repeat 10px 17px;}
+background:#ffffff url(../images/drag.png) no-repeat 10px 17px;}
 li.bucketlist-item span{display:block;width:59%;float:left;margin-right:1%;padding-bottom:15px;}
 li.bucketlist-item input{margin-right:3px;}
 
@@ -120,3 +124,18 @@ li.ui-state-highlight{border:1px solid black;background:aqua!important;cursor:mo
 .ui-datepicker tbody td{padding:0;border-right: 1px solid #bbb;border-bottom:1px solid #bbb;text-align:center;}
 .ui-datepicker tbody td:last-child{border-right:0px;}
 .ui-datepicker tbody tr:last-child{border-bottom:0px;}
+
+
+/* == responsive ======================================================== */
+
+/*.toplevel_page_bucketlist div.wp-menu-image img{background-size:16px 16px!important;}*/
+@media only screen and (-Webkit-min-device-pixel-ratio: 1.5),
+only screen and (-moz-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min-device-pixel-ratio: 1.5) {
+	ul.bucketlist-cat,li.bucketlist-item{
+		background-image:url(../images/drag@2x.png);
+		background-size:16px 16px;
+	}
+	
+}

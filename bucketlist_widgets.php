@@ -31,20 +31,26 @@ class ExileBucketList extends WP_Widget {
 					$instance, 
 					$this->id_base
 				);
-		$optPagelink 	= !empty( $instance['pagelink'] ) ? $instance['pagelink'] : false;
-		$optCount 	= !empty( $instance['count'] ) ? $instance['count'] : false;
+		$optPagelink 		= !empty( $instance['pagelink'] ) ? $instance['pagelink'] : false;
+		$optCount 			= !empty( $instance['count'] ) ? $instance['count'] : false;
 		$optPagelinkTitle 	= !empty( $instance['pagelinktitle'] ) ? $instance['pagelinktitle'] : false;
-		$optCategory 	= !empty( $instance['category'] ) ? '1' : '0';
-		$optDate 	= !empty( $instance['date'] ) ? '1' : '0';	
+		$optCategory 		= !empty( $instance['category'] ) ? '1' : '0';
+		$optDate 			= !empty( $instance['date'] ) ? '1' : '0';		
+		$optCatFilter		= !empty( $instance['catfilter'] ) ? $instance['catfilter'] : false;	
 			
 		// Get table name
 		$bucketTableName = $wpdb->prefix . "bucketlist_bucket";
 		$taskTableName = $wpdb->prefix . "bucketlist_task";
-				
-		// Prepare the query
-		$qList = 'SELECT T.title As taskTitle, B.title As bucketTitle, T.date_checked, T.link_to  FROM ' . $bucketTableName .  ' AS B, ' . $taskTableName . ' AS T WHERE B.id = T.list_id AND T.date_checked IS NOT NULL ORDER BY T.date_checked desc';
-		if ( $optCount && $optCount != 0 ) $qList	.= ' LIMIT 0, ' . $optCount;
 		
+		
+		// Prepare the query
+		$qList = 'SELECT T.title As taskTitle, B.title As bucketTitle, T.date_checked, T.link_to';
+		$qList .= ' FROM ' . $bucketTableName .  ' AS B, ' . $taskTableName . ' AS T';
+		$qList .= ' WHERE B.id = T.list_id';
+		if( $optCatFilter ) $qList .= ' AND B.id IN (' . $optCatFilter . ')';
+		$qList .= ' AND T.date_checked IS NOT NULL ORDER BY T.date_checked desc';
+		if ( $optCount && $optCount != 0 ) $qList	.= ' LIMIT 0, ' . $optCount;
+			
 		// Get the pages 
 		$list = $wpdb->get_results( $qList );
 		
@@ -93,13 +99,15 @@ class ExileBucketList extends WP_Widget {
 		$instance['count'] 		= $new_instance['count'];
 		$instance['pagelink'] 	= $new_instance['pagelink'];
 		$instance['pagelinktitle'] 	= $new_instance['pagelinktitle'];
-		$instance['category'] 		= !empty($new_instance['category']) ? 1 : 0;
-		$instance['date'] 			= !empty($new_instance['date']) ? 1 : 0;
+		$instance['category'] 	= !empty($new_instance['category']) ? 1 : 0;
+		$instance['date'] 		= !empty($new_instance['date']) ? 1 : 0;
+		$instance['catfilter'] 	= $new_instance['catfilter'];
 
 		return $instance;
     }
  
     function form($instance){
+			
         // Paramters form
 		//Defaults
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '') );
@@ -107,6 +115,16 @@ class ExileBucketList extends WP_Widget {
 		$count = isset($instance['count']) ? $instance['count'] : 0;
 		$pagelink = isset( $instance['pagelink'] ) ? $instance['pagelink'] : false;
 		$pagelinktitle = isset( $instance['pagelinktitle'] ) ? $instance['pagelinktitle'] : "";
+		$catfilter = $instance['catfilter'];
+		$tabcatfilter = explode(",",$catfilter);
+		$cats = BucketListManager::getListBucket(false);		
+		if ((( count($tabcatfilter) >= count($cats) ) && ( !in_array( "0", $tabcatfilter ))) || ( $catfilter == "") ){ 
+			$tabcatfilter = array();
+			array_push($tabcatfilter,0);
+			foreach( $cats as $key => $value ) { array_push($tabcatfilter,$value->id); }
+			$catfilter = implode(",",$tabcatfilter);
+		}
+		
 		
 		$category = isset( $instance['category'] ) ? (bool) $instance['category'] : false;		
 		if ( $category ) 	$checkedCategory = ' checked="checked" ';
@@ -121,18 +139,33 @@ class ExileBucketList extends WP_Widget {
 			echo '<input class="widefat" id="' . $this->get_field_id('title') . '" name="' . $this->get_field_name('title'). '" type="text" value="' . $title. '" />';
 		echo '</p>';
 		
+		echo '<p class="widefat">';			
+			echo '<label> ' . _e( 'Filter category:' ). '</label><br />';
+			echo '<select id="ms-' . $this->id . '" style="width:100%;" class="bucketlist-multiselect" multiple="multiple">';
+				if( (in_array( "0", $tabcatfilter )) || ($catfilter == "0")) $selected="selected";
+				else $selected = "";
+				echo '<option value="0" ' . $selected . '>' . __('Show All Categories') . '</option>';
+				foreach( $cats as $key => $value ) {
+					if( (in_array( $value->id, $tabcatfilter )) || ($catfilter == "0") ) $selected="selected";
+					else $selected = "";
+					echo '<option value="' . $value->id . '" ' . $selected . '>' . $value->title . '</option>';
+				}
+			echo '</select>';
+			echo '<input type="hidden" id="' . $this->get_field_id('catfilter') . '" name="' . $this->get_field_name('catfilter'). '" value="' . $catfilter . '" />';
+		echo '</p>';
+		
 		echo '<p>';
-			echo '<label for="' . $this->get_field_id('count') . '">' . _e( 'Number of task displayed:' ) . '</label>';
+			echo '<label for="' . $this->get_field_id('count') . '">' . _e( 'Number of goals to display:' ) . '</label>';
 			echo '<input size="3" id="' . $this->get_field_id('count') . '" name="' . $this->get_field_name('count'). '" type="text" value="' . $count. '" />';
 		echo '</p>';
 		
 		echo '<p>';			
-			echo	'<label for="' .  $this->get_field_id('pagelink'). '"> ' . _e( 'Page link:' ). '</label><br />';
+			echo	'<label for="' .  $this->get_field_id('pagelink'). '"> ' . _e( 'Bucket List page link:' ). '</label><br />';
 			echo 'http://<input id="' . $this->get_field_id('pagelink') . '" name="' . $this->get_field_name('pagelink'). '" type="text" value="' . $pagelink. '" />';
 		echo '</p>';
 		
 		echo '<p>';
-			echo '<label for="' . $this->get_field_id('pagelinktitle') . '">' . _e( 'Page link title:' ) . '</label><br />';
+			echo '<label for="' . $this->get_field_id('pagelinktitle') . '">' . _e( 'Bucket List page link title:' ) . '</label><br />';
 			echo '<input class="widefat" id="' . $this->get_field_id('pagelinktitle') . '" name="' . $this->get_field_name('pagelinktitle'). '" type="text" value="' . $pagelinktitle. '" />';
 		echo '</p>';
 		
@@ -146,6 +179,73 @@ class ExileBucketList extends WP_Widget {
 			echo '<label for="' .  $this->get_field_id('date'). '"> ' . _e( 'Display the date' ). '</label><br />';
 		echo '</p>';
 		
+		wp_enqueue_script( 'multipleselect-bucketlist-js', plugins_url() . '/bucket-list/js/jquery.multiple.select.js' );
+		wp_enqueue_style( 'multipleselect-bucketlist-css', plugins_url() . '/bucket-list/css/multiple-select.css' );
+		echo '<script type="text/javascript">';
+			echo '
+			var pass = [];
+			jQuery(
+				function() {
+					jQuery(".bucketlist-multiselect").each(
+						function() { 
+							var idMs = parseInt(this.id.replace("ms-exilebucketlist-",""));
+							if( !isNaN(idMs) && ( jQuery.inArray( idMs, pass ) == -1 ) ){
+								pass.push( idMs )
+								var currentMs = this;
+								jQuery( this ).multipleSelect(
+									{
+										selectAll: false,
+										width: "100%",
+										onInit: function() { 
+											var valtab = jQuery( "#widget-exilebucketlist-"+idMs+"-catfilter" ).val().split(",")
+											var valall = jQuery.map(jQuery("#ms-exilebucketlist-"+idMs+" option"), function(e) { return e.value; });
+											if( jQuery.inArray("0", valtab) != -1 ) jQuery( currentMs ).next().children(0).children(".ms-choice span").text( "Show All Categories" )									
+										},
+										onClick: function(view) {
+											var valtab = jQuery( "#widget-exilebucketlist-"+idMs+"-catfilter" ).val().split(",")
+											var valall = jQuery.map(jQuery("#ms-exilebucketlist-"+idMs+" option"), function(e) { return e.value; });
+											if( view.value == 0 ) {
+												if ( view.checked ) {
+													jQuery( currentMs ).multipleSelect("checkAll")
+													jQuery( currentMs ).next().children(0).children(".ms-choice span").text( view.label )
+													var valtabtext = valall.join(",");
+												}
+												else {
+													valtab.splice( jQuery.inArray("0", valtab),1 );
+													console.log( valtab );
+													var valtabtext = valtab.join(",");
+													if( valtabtext.charAt(0) == "," ) {
+														valtabtext = valtabtext.replace(",","");
+													}
+												}
+											}
+											else {
+												if ( view.checked ) {
+													valtab.push( view.value );
+												}
+												else {
+													valtab.splice( jQuery.inArray(view.value, valtab),1 );	
+													if( (jQuery.inArray("0", valtab) != -1) || (jQuery.inArray(0, valtab) != -1)) {
+														valtab.splice( jQuery.inArray("0", valtab),1 );
+														jQuery( currentMs ).multipleSelect("setSelects",valtab)
+													}
+												}
+												var valtabtext = valtab.join(",");
+												if( valtabtext.charAt(0) == "," ) {
+													valtabtext = valtabtext.replace(",","");
+												}
+											}
+											jQuery( "#widget-exilebucketlist-"+idMs+"-catfilter" ).val(valtabtext)
+										}
+									}
+								);
+							} 
+						}
+					);
+				}
+			);
+			';
+		echo '</script>';
     }
 	
 } 
