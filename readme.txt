@@ -52,13 +52,24 @@ We also included an optional widget that displays your latest achieved tasks. Yo
 
 == Changelog ==
 
+= 1.1.1 =
+* Fixed post selection (WordPress 4.1 update)
+
 = 1.1.0 =
 * You can now filter categories in or out your Bucket List, or display different categories on different pages using their IDs (example: [bucketlist cat="2,3"])
 * The Latest Achievements Widget now also allows you to filter categories in or out
 * Updated User Interface that fits WordPress 3.8 new colors, and retina support
 * New branding! Bucket List Plugin is now linked to our new website: Cleio&Co (changes in the back-end: social media icons, link-back in the footer and header design).
 
-= 1.0.3 =* Fixed ability to display the credit link or not.
+= 1.0.3 =
+* Fixed ability to display the credit link or not.
 * The database isn't deleted anymore when deactivating the plugin.
 
-= 1.0.2 =* Fixed bug that prevented certain users to create categories.= 1.0.1 =* Fixed plugin path.= 1 =* First version commited to WordPress.
+= 1.0.2 =
+* Fixed bug that prevented certain users to create categories.
+
+= 1.0.1 =
+* Fixed plugin path.
+
+= 1 =
+* First version commited to WordPress.

@@ -308,14 +308,16 @@ jQuery(
 									if ( dataExile.cathide ) {
 										var tabcat = dataExile.cathide.split(";")
 																		
-										for(var cat in tabcat){		
-											$("#hide-bucket_"+tabcat[cat])
-												.parent() // <li> for the link
-												.parent() // <ul> for the category info
-												.parent() // <li> for the category content
-												.parent() // <ul> category
-												.next().hide()
-											$("#hide-bucket_"+tabcat[cat]).children(0).attr( "src", $("#hide-bucket_"+tabcat[cat]).children(0).attr( "src").replace( "less.png", "more.png" ).replace("less@2x.png", "more@2x.png") )
+										for(var cat in tabcat){
+											if( $("#hide-bucket_"+tabcat[cat]).children(0).length ) {
+												$("#hide-bucket_"+tabcat[cat])
+													.parent() // <li> for the link
+													.parent() // <ul> for the category info
+													.parent() // <li> for the category content
+													.parent() // <ul> category
+													.next().hide()
+												$("#hide-bucket_"+tabcat[cat]).children(0).attr( "src", $("#hide-bucket_"+tabcat[cat]).children(0).attr( "src").replace( "less.png", "more.png" ).replace("less@2x.png", "more@2x.png") )
+											}
 										}
 									}
 								}

@@ -18,7 +18,7 @@ ul.bucketlist-cat,ul.bucketlist-items{background:#ffffff;overflow:hidden;}
 
 /* == dialogbox ======================================================== */
 
-.ui-dialog{background:white;}
+.ui-dialog{background:white;z-index:1;}
 .ui-dialog-content{padding:10px;}
 .ui-dialog-content input{margin-left:3px;}
 .ui-dialog-buttonpane{padding:0 10px 10px 10px;}
