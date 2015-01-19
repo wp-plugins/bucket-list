@@ -34,6 +34,7 @@ class ExileBucketList extends WP_Widget {
 		$optPagelink 		= !empty( $instance['pagelink'] ) ? $instance['pagelink'] : false;
 		$optCount 			= !empty( $instance['count'] ) ? $instance['count'] : false;
 		$optPagelinkTitle 	= !empty( $instance['pagelinktitle'] ) ? $instance['pagelinktitle'] : false;
+		$optDateFormat 		= !empty( $instance['dateformat'] ) ? $instance['dateformat'] : "d/m/Y";
 		$optCategory 		= !empty( $instance['category'] ) ? '1' : '0';
 		$optDate 			= !empty( $instance['date'] ) ? '1' : '0';		
 		$optCatFilter		= !empty( $instance['catfilter'] ) ? $instance['catfilter'] : false;	
@@ -71,7 +72,7 @@ class ExileBucketList extends WP_Widget {
 				else $taskTitle = stripslashes( $task->taskTitle );
 				
 				$date = new DateTime( $task->date_checked );
-				$dateFormat = $date->format('d/m/Y');	
+				$dateFormat = $date->format( $optDateFormat );	
 			
 				echo '<li>';
 					if ( $optCategory ) echo '[' . $task->bucketTitle . '] ';
@@ -102,6 +103,7 @@ class ExileBucketList extends WP_Widget {
 		$instance['category'] 	= !empty($new_instance['category']) ? 1 : 0;
 		$instance['date'] 		= !empty($new_instance['date']) ? 1 : 0;
 		$instance['catfilter'] 	= $new_instance['catfilter'];
+		$instance['dateformat'] 	= $new_instance['dateformat'];
 
 		return $instance;
     }
@@ -114,6 +116,7 @@ class ExileBucketList extends WP_Widget {
 		$title = esc_attr( $instance['title'] );
 		$count = isset($instance['count']) ? $instance['count'] : 0;
 		$pagelink = isset( $instance['pagelink'] ) ? $instance['pagelink'] : false;
+		$dateformat = isset( $instance['dateformat'] ) ? $instance['dateformat'] : "d/m/Y";
 		$pagelinktitle = isset( $instance['pagelinktitle'] ) ? $instance['pagelinktitle'] : "";
 		$catfilter = $instance['catfilter'];
 		$tabcatfilter = explode(",",$catfilter);
@@ -179,6 +182,11 @@ class ExileBucketList extends WP_Widget {
 			echo '<label for="' .  $this->get_field_id('date'). '"> ' . _e( 'Display the date' ). '</label><br />';
 		echo '</p>';
 		
+		echo '<p>';			
+			echo	'<label for="' .  $this->get_field_id('dateformat'). '"> ' . _e( 'Date format:' ). '</label>';
+			echo '<input id="' . $this->get_field_id('dateformat') . '" name="' . $this->get_field_name('dateformat'). '" type="text" value="' . $dateformat. '" />';
+		echo '</p>';
+
 		wp_enqueue_script( 'multipleselect-bucketlist-js', plugins_url() . '/bucket-list/js/jquery.multiple.select.js' );
 		wp_enqueue_style( 'multipleselect-bucketlist-css', plugins_url() . '/bucket-list/css/multiple-select.css' );
 		echo '<script type="text/javascript">';

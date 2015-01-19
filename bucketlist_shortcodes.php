@@ -21,6 +21,7 @@ function display_bucketlist( $atts ){
 		shortcode_atts( 
 			array(
 				'displaydate' 	=> true,
+				'dateformat'	=> 'd/m/Y',
 				'cat'			=> 0
 			), 
 			$atts 
@@ -65,17 +66,17 @@ function display_bucketlist( $atts ){
 					if ( $task->date_checked) {
 						$class =' class="item-' . $task->id . ' done" ';
 						$date = new DateTime( $task->date_checked );
-						$dateFormat = $date->format('d/m/Y');	
+						$dateFormatted = $date->format( $dateformat );	
 					}
 					else {
 						$class = 'class="item-' . $i . '"';
-						$dateFormat = "";
+						$dateFormatted = "";
 					}
 					
 					$content .= '<li ' . $class . '>';						
 						if ( $task->link_to ) $content .= '<span><a href="' . get_permalink( $task->link_to ) . '" title="' . get_post( $task->link_to )->post_title . '">' . stripslashes( $task->title ) . '</a></span>';	
 						else $content .= '<span>' . stripslashes( $task->title ) . '</span>';	
-						if ( $displaydate ) $content .= ' <span class="date">' . $dateFormat . '</span>';
+						if ( $displaydate ) $content .= ' <span class="date">' . $dateFormatted . '</span>';
 					$content .= '</li>';
 					
 				}

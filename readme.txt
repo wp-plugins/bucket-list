@@ -4,7 +4,7 @@ Donate link: http://www.exiledesigns.com/
 Tags: bucket-list, bucket, goals, to-do, achievements
 Requires at least: 3.0.1
 Tested up to: 4.1
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -51,6 +51,10 @@ We also included an optional widget that displays your latest achieved tasks. Yo
 5. By default, the achievement date will show, but you can hide it: [bucketlist displaydate=0]
 
 == Changelog ==
+
+= 1.2.0 =
+* Add "dateformat" shortcode option, you can now specific a format date (refer to PHP documentation: http://php.net/manual/en/function.date.php, example: [bucketlist dateformat="m/d/Y"])
+* Add format date option to the widget (refer to PHP documentation: http://php.net/manual/en/function.date.php)
 
 = 1.1.1 =
 * Fixed post selection (WordPress 4.1 update)
