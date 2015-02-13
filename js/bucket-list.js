@@ -25,7 +25,7 @@ jQuery(
 				jQuery.post(
 					ajaxurl,
 					{	action: 'updateOptBucketlistInfo' },
-					function( response ){								
+					function( response ){							
 						return false;
 					}
 				)
@@ -99,11 +99,11 @@ jQuery(
 								res.responses, 
 								function() { 
 									if (this.id != 0) {
-										$("#catTitle").val("")
-										$("#formCat").hide()
+										$("#catTitle").val("");
+										$("#formCat").hide();
 										getSelectListBucket();
 										//getListBucket();
-										$("#listCat").prepend( this.data )
+										$("#listCat").prepend( this.data );
 										applyActions();
 									}
 									else{
@@ -264,7 +264,6 @@ jQuery(
 				ajaxurl,
 				{	action: 'getSelectListBucket' },
 				function( response ){
-						
 					var res = wpAjax.parseAjaxResponse(response, 'ajax-response');
 					jQuery.each( 
 						res.responses, 
@@ -808,7 +807,7 @@ jQuery(
 		)
 		
 		if (RetinaImage !== undefined) {
-			$("#listContainer").find('img').each(function() {
+			$("#listContainer").find('img:not([src*="@2x.png"])').each(function() {
 				new RetinaImage(this);
 			});
 		}

@@ -6,9 +6,9 @@
   *
   */
  
-class BucketListManager {
+abstract class BucketListManager {
 
- 	function addBucket( $data ) {
+ 	public static function addBucket( $data ) {
 	
 		#; Init DB
 		global $wpdb;
@@ -32,7 +32,7 @@ class BucketListManager {
 		return $wpdb->insert_id;
 	}
  
- 	function editBucket( $data ) {
+ 	public static function editBucket( $data ) {
 	
 		#; Init DB
 		global $wpdb;
@@ -67,7 +67,7 @@ class BucketListManager {
 		
 	}
 	
-	function updateBucketOrder( $id, $nOrder ) {
+	public static function updateBucketOrder( $id, $nOrder ) {
 	
 		#; Init DB
 		global $wpdb;
@@ -91,7 +91,7 @@ class BucketListManager {
 		
 	}
 	 
- 	function deleteBucket( $id ) {
+ 	public static function deleteBucket( $id ) {
 	
 		#; Init DB
 		global $wpdb;
@@ -122,7 +122,7 @@ class BucketListManager {
 		return true;
 	}
 
- 	function addTask( $data ) {
+ 	public static function addTask( $data ) {
 	
 		#; Init DB
 		global $wpdb;
@@ -147,7 +147,7 @@ class BucketListManager {
 		
 	}
 
- 	function editTask( $tId, $data ) {
+ 	public static function editTask( $tId, $data ) {
 	
 		#; Init DB
 		global $wpdb;
@@ -180,7 +180,7 @@ class BucketListManager {
 	 
 	}
 	
-	function updateTaskOrder( $id, $nOrder, $bucket ) {
+	public static function updateTaskOrder( $id, $nOrder, $bucket ) {
 	
 		#; Init DB
 		global $wpdb;
@@ -207,7 +207,7 @@ class BucketListManager {
 		
 	}
 	
- 	function deleteTask( $id ) {
+ 	public static function deleteTask( $id ) {
 	
 		#; Init DB
 	 	global $wpdb;
@@ -227,7 +227,7 @@ class BucketListManager {
 		return true;
 	}
 	
-	function getListBucket( $withTask = true, $filtres = "" ){
+	public static function getListBucket( $withTask = true, $filtres = "" ){
 	
 		#; Init DB
 		global $wpdb;
@@ -267,7 +267,7 @@ class BucketListManager {
 		return $listBucket;
 	}
 	
-	function getSelectListBucket( $filtres = "" ){
+	public static function getSelectListBucket( $filtres = "" ){
 	
 		#; Init DB
 		global $wpdb;
@@ -302,7 +302,7 @@ class BucketListManager {
 		return $content;
 	}
 	
-	function getListBucketHTML( $withTask = true, $filtres = "" ){
+	public static function getListBucketHTML( $withTask = true, $filtres = "" ){
 	
 		#; Init DB
 		global $wpdb;
@@ -407,7 +407,7 @@ class BucketListManager {
 		return $content;
 	}
 	
-	function getListTask( $filtres = "" ){
+	public static function getListTask( $filtres = "" ){
 		
 		#; Init DB
 		global $wpdb;
